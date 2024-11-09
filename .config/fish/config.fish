@@ -3,7 +3,7 @@ if status is-interactive
 end
 
 alias cls='clear'
-alias bat='batcat'
+# alias bat='batcat'
 alias vim='nvim'
 
 alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
