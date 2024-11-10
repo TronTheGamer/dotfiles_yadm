@@ -39,4 +39,6 @@ end
 
 # enable_transience
 
+xhost +local:
+
 # $PATH=/home/es-yadu/flutter/SDK/flutter/bin:$PATH
