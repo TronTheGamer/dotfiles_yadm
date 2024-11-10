@@ -1,0 +1,124 @@
+cls
+clear
+ll
+la
+clear
+eza
+clear
+ls .config/nushell/
+.config/nushell/
+vim 
+nvim 
+cls
+clear
+nvim
+exit
+cls
+clear
+la
+ls
+ls -la
+clear
+mkdir -p wezterm
+mkdir wezterm
+clear
+cd wezterm/
+touch wezterm.lua
+vim
+nvim
+cls
+clear
+cd ..
+yadm init
+yadm --help
+yadm list
+yadm --help
+yadm alt arch
+yadm list
+cd ..
+nvim .config/fish/config.fish
+clear
+exit
+clear
+ls -la
+yadm add wezterm fish nvim
+yadm list
+yadm add origin https://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@github.com/TronTheGamer/dotfiles_yadm
+yadm commit -m "init yadm config"
+yadm push origin -u main
+yadm checkout main
+yadm branch
+yadm checkout master
+yadm push origin -u master
+yadm remote remove origin
+yadm remote list
+yadm remote add origin https://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@github.com/TronTheGamer/dotfiles_yadm
+yadm push origin -u main
+yadm push origin -u master
+yadm checkout main
+yadm branch
+yadm checkout -b main 
+cls
+yadm list
+yadm status
+yadm add fish/
+yadm commit -m "changes for arch in fish"
+yadm push origin -u main
+configf
+config
+config nu
+alias EDITOR='nvim'
+alias EDITOR = 'nvim'
+alias EDITOR = nvim
+clear
+config nu
+echo $EDITOR 
+echo $envEDITOR 
+echo $env.EDITOR 
+config nev
+config env
+clear
+config env
+echo $env.EDITOR 
+$env.EDITOR  = nvim
+$env.EDITOR  = ^nvim
+cls
+clear
+exit
+echo $env.EDITOR 
+cls
+clear
+exit
+cls
+clear
+config
+config nu
+cls
+clear
+exit
+config nu
+config reload
+reload config
+clear
+source .config/nushell/config.nu
+cls
+yay -Ss starship
+config nu
+source .config/nushell/config.nu
+config nu
+source .config/nushell/config.nu
+pwd
+mkdir ~/.cache/starship<\n>starship init nu | save -f ~/.cache/starship/init.nu
+config nu
+mkdir ~/.cache/starship<\n>starship init nu | save -f ~/.cache/starship/init.nu
+source .config/nushell/config.nu
+cls
+touch .config/starship.toml
+vim .config/starship.toml
+nvim .config/starship.toml
+cls
+echo SHELL
+echo $SHELL
+echo $env.SHELL
+cls
+exit
