@@ -23,10 +23,10 @@ install_wezterm() {
 }
 
 install_neovim(){
-    if ["$(detect_os)" = "arch"]; then
+    if [ "$(detect_os)" = "arch" ]; then
       echo "Installing Neovim on Arch Linux..."
       sudo pacman -Sy --noconfirm neovim
-    elif ["$(detect_os)" = "ubuntu"]; then
+    elif [ "$(detect_os)" = "ubuntu" ]; then
       echo "Installing Neovim on Ubuntu..."
       sudo apt install neovim -y
     else
@@ -58,7 +58,46 @@ set_fish_shell() {
         echo "Fish shell not set as the default."
     fi
 }
+
+
+# Function to install fzf and input-remapper
+install_fzf_and_input_remapper() {
+    if [ "$(detect_os)" = "arch" ]; then
+        echo "Installing fzf and input-remapper on Arch Linux..."
+        sudo pacman -Sy --noconfirm fzf
+        sudo pacman -Sy --noconfirm input-remapper
+    elif [ "$(detect_os)" = "ubuntu" ]; then
+        echo "Installing fzf and input-remapper on Ubuntu..."
+        sudo apt update && sudo apt install -y fzf
+        echo "Installing input-remapper..."
+        sudo add-apt-repository ppa:justinmahar/input-remapper -y
+        sudo apt update && sudo apt install -y input-remapper
+    else
+        echo "This script currently supports fzf and input-remapper installation on Arch Linux and Ubuntu only."
+    fi
+}
+
+# Function to install paru on Arch Linux
+install_paru() {
+    if [ "$(detect_os)" = "arch" ]; then
+        if ! command -v paru &> /dev/null; then
+            echo "Installing paru (AUR helper) on Arch Linux..."
+            sudo pacman -Sy --noconfirm --needed base-devel git
+            git clone https://aur.archlinux.org/paru.git "$HOME/paru"
+            cd "$HOME/paru" || exit
+            makepkg -si --noconfirm
+            cd - || exit
+            rm -rf "$HOME/paru"
+        else
+            echo "paru is already installed."
+        fi
+    else
+        echo "paru installation is only supported on Arch Linux."
+    fi
+}
+
 # Run the installation
 set_fish_shell
 install_wezterm
 install_neovim
+install_fzf_and_input_remapper
