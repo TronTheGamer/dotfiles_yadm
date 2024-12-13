@@ -12,8 +12,9 @@ config = { -- Basic Appearance
 	automatically_reload_config = true,
 	font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
 	font_size = 12,
-	color_scheme = "tokyonight",
+	-- color_scheme = "tokyonight",
 	-- color_scheme = "kanagawa (Gogh)",
+	color_scheme = "Belafonte Night (Gogh)",
 }
 
 config.keys = {
