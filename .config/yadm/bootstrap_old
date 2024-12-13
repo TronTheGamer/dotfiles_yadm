@@ -1,8 +1,8 @@
+
 #!/bin/bash
 
 # Function to determine the OS type
 detect_os() {
-    # Check for the presence of specific files to identify the OS
     if [ -f /etc/arch-release ]; then
         echo "arch"
     elif [ -f /etc/lsb-release ] && grep -q "Ubuntu" /etc/lsb-release; then
@@ -16,38 +16,31 @@ detect_os() {
 install_wezterm() {
     if [ "$(detect_os)" = "arch" ]; then
         echo "Installing WezTerm on Arch Linux..."
-        # Install WezTerm using paru
-        paru -Sy --noconfirm wezterm
+        sudo pacman -Sy --noconfirm wezterm
     else
         echo "This script currently supports WezTerm installation on Arch Linux only."
     fi
 }
 
-# Function to install Neovim
-install_neovim() {
+install_neovim(){
     if [ "$(detect_os)" = "arch" ]; then
-        echo "Installing Neovim on Arch Linux..."
-        # Install Neovim using paru
-        paru -Sy --noconfirm neovim
+      echo "Installing Neovim on Arch Linux..."
+      sudo pacman -Sy --noconfirm neovim
     elif [ "$(detect_os)" = "ubuntu" ]; then
-        echo "Installing Neovim on Ubuntu..."
-        # Update package lists and install Neovim on Ubuntu
-        sudo apt update && sudo apt install -y neovim
+      echo "Installing Neovim on Ubuntu..."
+      sudo apt install neovim -y
     else
-        echo "This script currently supports Neovim installation on Arch Linux and Ubuntu only."
+      echo "This script currently supports Neovim installation on Arch Linux and Ubuntu only."
     fi
-}
-
+  }
 # Function to check and install Fish if not installed, then set as the default shell
 set_fish_shell() {
-    # Check if Fish shell is already installed
+    # Check if Fish is installed
     if ! command -v fish &> /dev/null; then
         echo "Fish shell is not installed. Installing Fish..."
         if [ "$(detect_os)" = "arch" ]; then
-            # Install Fish on Arch Linux using paru
-            paru -Sy --noconfirm fish
+            sudo pacman -Sy --noconfirm fish
         elif [ "$(detect_os)" = "ubuntu" ]; then
-            # Install Fish on Ubuntu
             sudo apt update && sudo apt install -y fish
         else
             echo "Unsupported OS. Please install Fish manually."
@@ -59,7 +52,6 @@ set_fish_shell() {
     read -p "Do you want to set Fish as the default shell? (y/n): " choice
     if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
         echo "Setting Fish as the default shell..."
-        # Change the default shell to Fish
         chsh -s "$(which fish)"
         echo "Fish shell has been set as the default."
     else
@@ -67,20 +59,17 @@ set_fish_shell() {
     fi
 }
 
+
 # Function to install fzf and input-remapper
 install_fzf_and_input_remapper() {
     if [ "$(detect_os)" = "arch" ]; then
         echo "Installing fzf and input-remapper on Arch Linux..."
-        # Install fzf using paru
-        paru -Sy --noconfirm fzf
-        # Install input-remapper using paru
-        paru -Sy --noconfirm input-remapper
+        sudo pacman -Sy --noconfirm fzf
+        sudo pacman -Sy --noconfirm input-remapper
     elif [ "$(detect_os)" = "ubuntu" ]; then
         echo "Installing fzf and input-remapper on Ubuntu..."
-        # Update package lists and install fzf on Ubuntu
         sudo apt update && sudo apt install -y fzf
         echo "Installing input-remapper..."
-        # Add the PPA and install input-remapper
         sudo add-apt-repository ppa:justinmahar/input-remapper -y
         sudo apt update && sudo apt install -y input-remapper
     else
@@ -91,23 +80,13 @@ install_fzf_and_input_remapper() {
 # Function to install paru on Arch Linux
 install_paru() {
     if [ "$(detect_os)" = "arch" ]; then
-        # Check if paru is already installed
         if ! command -v paru &> /dev/null; then
             echo "Installing paru (AUR helper) on Arch Linux..."
-            # Install necessary tools for building AUR packages
             sudo pacman -Sy --noconfirm --needed base-devel git
-            # Check if the directory for cloning already exists
-            if [ -d "$HOME/paru" ]; then
-                echo "Directory $HOME/paru already exists. Skipping clone."
-            else
-                # Clone the paru repository
-                git clone https://aur.archlinux.org/paru.git "$HOME/paru"
-            fi
-            # Navigate to the directory and build the package
+            git clone https://aur.archlinux.org/paru.git "$HOME/paru"
             cd "$HOME/paru" || exit
             makepkg -si --noconfirm
             cd - || exit
-            # Remove the cloned directory after installation
             rm -rf "$HOME/paru"
         else
             echo "paru is already installed."
@@ -117,8 +96,7 @@ install_paru() {
     fi
 }
 
-# Run the installations
-install_paru
+# Run the installation
 set_fish_shell
 install_wezterm
 install_neovim
