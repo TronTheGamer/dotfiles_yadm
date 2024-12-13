@@ -11,6 +11,17 @@ alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
 
 bass export EDITOR='/usr/bin/nvim'
 
+# --------------------------------------------------------------------------
+# ---------- FZF COMMANDS --------------------------------------------------
+# --------------------------------------------------------------------------
+
+if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
+    source ~/.config/fish/custom/git_fzf.fish
+    git_fzf_key_bindings
+end
+
+set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
+
 
 # FUNCTIONS
 # ----------
@@ -42,3 +53,5 @@ end
 xhost +local:root
 
 # $PATH=/home/es-yadu/flutter/SDK/flutter/bin:$PATH
+
+cls
