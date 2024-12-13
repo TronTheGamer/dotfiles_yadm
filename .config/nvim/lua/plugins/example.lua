@@ -11,6 +11,7 @@
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
+  {"scottmckendry/cyberdream.nvim"},
 
   -- add tokyonight
   {
@@ -31,14 +32,15 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawabones",
+      colorscheme = "cyberdream",
     },
   },
 
 
 --I've also tried changing `colorscheme = "tokyonight-night"` but that also does not work. The file is being loaded and read because I had a syntax error and that showed up. I feel like I am following the directions of both tokyonight and lazyvim, but can't get this to work. I have to type `:colorscheme tokyonight-night` when loading lazyvim to get it to workk. 
-
-
+   
+  {"pocco81/auto-save.nvim"},
+  {"MeanderingProgrammer/render-markdown.nvim"},
   -- change trouble config
   {
     "folke/trouble.nvim",
