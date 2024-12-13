@@ -20,7 +20,19 @@ if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
     git_fzf_key_bindings
 end
 
-set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
+# source /usr/share/fzf/key-bindings.fish
+set -U FZF_LEGACY_KEYBINDINGS 0
+set -U FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
+# fzf_configure_bindings --directory=\ct --processes=\ck   #REQUIRES fzf.fish
+set -U FZF_FIND_FILE_COMMAND "ag -l --hidden --ignore .git . \$dir 2> /dev/null"
+set -U FZF_CD_WITH_HIDDEN_COMMAND "ag -l --hidden --ignore .git . \$dir 2> /dev/null"
+set -U FZF_PREVIEW_FILE_CMD "head -n 15"
+set -U FZF_PREVIEW_DIR_CMD ls
+
+set -U FZF_FIND_FILE_OPTS "--reverse --inline-info --preview='bat {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+set -U FZF_CD_WITH_HIDDEN_OPTS "--reverse --preview='tree -C {}' "
+set -U FZF_COMPLETE_OPTS "--reverse --inline-info --border"
+set -U FZF_ENABLE_OPEN_PREVIEW 1
 
 
 # FUNCTIONS

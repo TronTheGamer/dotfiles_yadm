@@ -2,7 +2,6 @@ jorgebucaran/fisher
 jorgebucaran/autopair.fish
 ttscoff/fuzzy_cd
 meaningful-ooo/sponge
-patrickf1/fzf.fish
 nickeb96/puffer-fish
 gazorby/fish-abbreviation-tips
 ilancosman/tide@v6
@@ -10,3 +9,4 @@ jethrokuan/z
 joseluisq/gitnow@2.12.0
 edc/bass
 y3owk1n/fish-x
+jethrokuan/fzf
