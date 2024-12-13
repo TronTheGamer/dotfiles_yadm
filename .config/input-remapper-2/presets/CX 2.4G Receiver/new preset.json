@@ -1,0 +1,28 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 276,
+                "origin_hash": "e1c35248fb08d41b35790bcb50931b3d"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "k",
+        "name": "up",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 275,
+                "origin_hash": "e1c35248fb08d41b35790bcb50931b3d"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "j",
+        "name": "down",
+        "mapping_type": "key_macro"
+    }
+]

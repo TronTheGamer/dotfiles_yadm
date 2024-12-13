@@ -41,6 +41,8 @@ return {
    
   {"pocco81/auto-save.nvim"},
   {"MeanderingProgrammer/render-markdown.nvim"},
+  {"rmagatti/auto-session"},
+  {"folke/persistence.nvim"},
   -- change trouble config
   {
     "folke/trouble.nvim",
