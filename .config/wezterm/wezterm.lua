@@ -15,6 +15,7 @@ config = { -- Basic Appearance
 	-- color_scheme = "tokyonight",
 	-- color_scheme = "kanagawa (Gogh)",
 	color_scheme = "Belafonte Night (Gogh)",
+	enable_wayland = false,
 }
 
 config.keys = {
