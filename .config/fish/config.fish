@@ -26,8 +26,8 @@ if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
     git_fzf_key_bindings
 end
 
-# source /usr/share/fzf/key-bindings.fish
-set -U FZF_LEGACY_KEYBINDINGS 0
+source /usr/share/fzf/key-bindings.fish
+# set -U FZF_LEGACY_KEYBINDINGS 1
 set -U FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 # fzf_configure_bindings --directory=\ct --processes=\ck   #REQUIRES fzf.fish
 set -U FZF_FIND_FILE_COMMAND "ag -l --hidden --ignore .git . \$dir 2> /dev/null"
