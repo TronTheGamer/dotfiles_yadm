@@ -9,6 +9,12 @@ alias EDITOR='nvim'
 
 alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
 
+alias fd='fd'
+alias lg='lazygit'
+alias ncf='nvim ~/.config/fish/'
+alias fman='bash -c "compgen -c|fzf|xargs man"'
+alias zf='z --list | fzf | awk \'{$1=""; sub(/^ /, ""); print}\' | read -l dir && cd $dir'
+
 bass export EDITOR='/usr/bin/nvim'
 
 # --------------------------------------------------------------------------
