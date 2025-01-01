@@ -40,5 +40,8 @@ config.keys = {
 		action = wezterm.action.ToggleFullScreen,
 	},
 }
+
+config.default_prog = { "tmux" }
+
 -- and finally, return the configuration to wezterm
 return config
