@@ -14,6 +14,8 @@ alias lg='lazygit'
 alias ncf='nvim ~/.config/fish/'
 alias fman='bash -c "compgen -c|fzf|xargs man"'
 alias zf='z --list | fzf | awk \'{$1=""; sub(/^ /, ""); print}\' | read -l dir && cd $dir'
+alias ls='eza --long --color=always --icons'
+alias ll='eza -a -l --color=always --icons'
 
 bass export EDITOR='/usr/bin/nvim'
 
