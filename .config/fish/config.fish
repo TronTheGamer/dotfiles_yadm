@@ -18,6 +18,8 @@ alias ls='eza --long --color=always --icons'
 alias ll='eza -a -l --color=always --icons'
 alias nz='bash -c "~/.config/scripts/z_openfiles_nvim.sh"'
 alias sf='source ~/.config/fish/config.fish'
+alias pss='ps -e | fzf'
+alias psk="ps -e | fzf | awk '{print $1}' | xargs -I {} kill -9 {}"
 
 bass export EDITOR='/usr/bin/nvim'
 
