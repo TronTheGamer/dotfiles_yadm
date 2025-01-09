@@ -2,8 +2,8 @@
 
 theme = Arthur
 background = #000000
-background-opacity = 0.75
-background-blur-radius = 20
+background-opacity = 0.95
+background-blur-radius = 50
 
 font-family =  JetBrainsMono NF SemiBold
 font-size = 15
@@ -13,7 +13,7 @@ cursor-invert-fg-bg = true
 
 macos-titlebar-style = hidden
 macos-option-as-alt = true
-window-decoration = false
+window-decoration = true
 mouse-hide-while-typing = true
 
 confirm-close-surface = false
@@ -31,7 +31,7 @@ copy-on-select = clipboard
 
 # Custom Keybinds & Config (super represents cmd key on mac)
 # For Simple Keybinds
-# keybind = super+shift+r=reload_config 
+keybind = super+shift+r=reload_config 
 keybind = super+i=inspector:toggle
 
 # Similar Tmux but with Ghostty
