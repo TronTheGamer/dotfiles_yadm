@@ -14,12 +14,13 @@ alias lg='lazygit'
 alias ncf='nvim ~/.config/fish/'
 alias fman='bash -c "compgen -c|fzf|xargs man"'
 alias zf='z --list | fzf | awk \'{$1=""; sub(/^ /, ""); print}\' | read -l dir && cd $dir'
-alias ls='eza --long --grid --color=always --icons'
-alias ll='eza -a -l --grid --color=always --icons'
+alias ls='eza --long --color=always --icons'
+alias ll='eza -a -l --color=always --icons'
 alias nz='bash -c "~/.config/scripts/z_openfiles_nvim.sh"'
 alias sf='source ~/.config/fish/config.fish'
 alias pss='ps -e | fzf'
 alias psk="ps -e | fzf | awk '{print $1}' | xargs -I {} kill -9 {}"
+alias comfyui='python3 $HOME/ComfyUI/main.py'
 
 bass export EDITOR='/usr/bin/nvim'
 
@@ -76,6 +77,19 @@ end
 
 xhost +local:root
 
-# $PATH=/home/es-yadu/flutter/SDK/flutter/bin:$PATH
+$PATH=$HOME/ws_ros2/:$PATH
 
 cls
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/yadu/anaconda3/bin/conda
+    eval /home/yadu/anaconda3/bin/conda "shell.fish" hook $argv | source
+else
+    if test -f "/home/yadu/anaconda3/etc/fish/conf.d/conda.fish"
+        . "/home/yadu/anaconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH /home/yadu/anaconda3/bin $PATH
+    end
+end
+# <<< conda initialize <<<

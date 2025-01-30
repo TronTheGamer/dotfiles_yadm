@@ -3,6 +3,7 @@ local wezterm = require("wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
+local opacity = 0.6
 
 -- This is where you actually apply your config choices
 
@@ -14,8 +15,10 @@ config = { -- Basic Appearance
 	font_size = 14,
 	-- color_scheme = "tokyonight",
 	-- color_scheme = "kanagawa (Gogh)",
-	color_scheme = "Belafonte Night (Gogh)",
+	-- color_scheme = "Belafonte Night (Gogh)",
+	color_scheme = "cyberdream",
 	enable_wayland = false,
+	window_decorations = "RESIZE",
 }
 
 config.keys = {
@@ -40,6 +43,9 @@ config.keys = {
 		action = wezterm.action.ToggleFullScreen,
 	},
 }
+
+config.window_background_opacity = opacity
+config.macos_window_background_blur = 35
 
 config.default_prog = { "tmux" }
 
