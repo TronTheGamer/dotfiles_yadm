@@ -18,7 +18,15 @@ config = { -- Basic Appearance
 	-- color_scheme = "Belafonte Night (Gogh)",
 	color_scheme = "cyberdream",
 	enable_wayland = false,
-	window_decorations = "RESIZE",
+	window_decorations = "NONE",
+	hide_tab_bar_if_only_one_tab = false,
+}
+
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
 
 config.keys = {
