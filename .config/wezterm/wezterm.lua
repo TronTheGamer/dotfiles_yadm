@@ -11,15 +11,15 @@ local opacity = 0.6
 -- config.color_scheme = "kanagawabones"
 config = { -- Basic Appearance
 	automatically_reload_config = true,
-	font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
-	font_size = 14,
+	font = wezterm.font("Code New Roman Nerd Font", { weight = 550 }),
+	font_size = 13,
 	-- color_scheme = "tokyonight",
 	-- color_scheme = "kanagawa (Gogh)",
 	-- color_scheme = "Belafonte Night (Gogh)",
 	color_scheme = "cyberdream",
 	enable_wayland = false,
-	window_decorations = "NONE",
-	hide_tab_bar_if_only_one_tab = false,
+	window_decorations = "RESIZE",
+	hide_tab_bar_if_only_one_tab = true,
 }
 
 config.window_padding = {

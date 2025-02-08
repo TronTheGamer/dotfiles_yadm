@@ -69,7 +69,7 @@ function starship_transient_rprompt_func
     starship module time
 end
 
-# starship init fish | source
+starship init fish | source
 # export GZ_SIM_SYSTEM_PLUGIN_PATH=$HOME/ardupilot_gazebo/build:$GZ_SIM_SYSTEM_PLUGIN_PATH
 # export GZ_SIM_RESOURCE_PATH=$HOME/ardupilot_gazebo/models:$HOME/ardupilot_gazebo/worlds:$GZ_SIM_RESOURCE_PATH
 
