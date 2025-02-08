@@ -134,6 +134,7 @@ return {
   },
 {
   "hrsh7th/nvim-cmp",
+  lazy = false,
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
     local has_words_before = function()
@@ -470,5 +471,7 @@ return {
 
 { "nvim-lua/plenary.nvim", lazy = true },
 
-
+-- ToggleTerm
+  {'akinsho/toggleterm.nvim', version = "*", config = true},
+  
 }
