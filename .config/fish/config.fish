@@ -21,6 +21,7 @@ alias sf='source ~/.config/fish/config.fish'
 alias pss='ps -e | fzf'
 alias psk="ps -e | fzf | awk '{print $1}' | xargs -I {} kill -9 {}"
 alias comfyui='python3 $HOME/ComfyUI/main.py'
+alias wzf='nvim ~/.config/wezterm/wezterm.lua'
 
 bass export EDITOR='/usr/bin/nvim'
 
