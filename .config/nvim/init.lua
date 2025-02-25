@@ -1,8 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
-require("snacks")
-
 -- require("cmp")
 ---------------------CyberDream Theme ----------------------------
 -- require("cyberdream").setup({
@@ -65,11 +63,10 @@ require("snacks")
 --   },
 -- })
 
-require("plugins.example")
-
 -- ---------------------CyberDream Theme ----------------------------
 
 -- Add a custom keybinding to toggle the colorscheme
 vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 -- setup must be called before loading
 -- vim.cmd("colorscheme kanagawa")
+vim.g.lazyvim_check_order = false

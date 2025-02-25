@@ -55,3 +55,6 @@ require("lazy").setup({
     },
   },
 })
+
+-- require("plugins.example")
+-- require("snacks")

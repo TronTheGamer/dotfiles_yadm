@@ -22,6 +22,7 @@ alias pss='ps -e | fzf'
 alias psk="ps -e | fzf | awk '{print $1}' | xargs -I {} kill -9 {}"
 alias comfyui='python3 $HOME/ComfyUI/main.py'
 alias wzf='nvim ~/.config/wezterm/wezterm.lua'
+alias v='nvim'
 
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")

@@ -354,7 +354,7 @@ return {
   },
 
   -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
+  -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
@@ -379,16 +379,49 @@ return {
       panel = { enabled = true },
     },
   },
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({})
+  --   end,
+  -- },
+---@type LazySpec
+{
+  "mikavilpas/yazi.nvim",
+  event = "VeryLazy",
+  keys = {
+    -- 👇 in this section, choose your own keymappings!
+    {
+      "<leader>-",
+      mode = { "n", "v" },
+      "<cmd>Yazi<cr>",
+      desc = "Open yazi at the current file",
     },
-    config = function()
-      require("codeium").setup({})
-    end,
+    {
+      -- Open in the current working directory
+      "<leader>cw",
+      "<cmd>Yazi cwd<cr>",
+      desc = "Open the file manager in nvim's working directory",
+    },
+    {
+      "<c-up>",
+      "<cmd>Yazi toggle<cr>",
+      desc = "Resume the last yazi session",
+    },
   },
+  ---@type YaziConfig | {}
+  opts = {
+    -- if you want to open yazi instead of netrw, see below for more info
+    open_for_directories = false,
+    keymaps = {
+      show_help = "<f1>",
+    },
+  },
+},
 {
   "nvim-treesitter/nvim-treesitter",
   version = false, -- last release is way too old and doesn't work on Windows
@@ -472,6 +505,8 @@ return {
 { "nvim-lua/plenary.nvim", lazy = true },
 
 -- ToggleTerm
-  {'akinsho/toggleterm.nvim', version = "*", config = true},
+  {'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true},
   
 }

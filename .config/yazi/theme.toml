@@ -1,4 +1,8 @@
 
+# [flavor]
+# # dark = "kanagawa"
+# # dark = "catppuccin-frappe"
+# # dark = "kanagawa"
+# use = "monokai-vibrant"
 [flavor]
-# dark = "kanagawa-dragon"
-dark = "catppuccin-frappe"
+dark = "flexoki-dark"
