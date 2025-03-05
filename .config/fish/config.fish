@@ -11,7 +11,7 @@ alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
 
 alias fd='fd'
 alias lg='lazygit'
-alias ncf='nvim ~/.config/fish/'
+alias ncf='nvim ~/.config/fish/config.fish'
 alias fman='bash -c "compgen -c|fzf|xargs man"'
 alias zf='z --list | fzf | awk \'{$1=""; sub(/^ /, ""); print}\' | read -l dir && cd $dir'
 alias ls='eza --long --color=always --icons'
@@ -23,6 +23,8 @@ alias psk="ps -e | fzf | awk '{print $1}' | xargs -I {} kill -9 {}"
 alias comfyui='python3 $HOME/ComfyUI/main.py'
 alias wzf='nvim ~/.config/wezterm/wezterm.lua'
 alias v='nvim'
+alias lzd="lazydocker"
+alias pst="posting"
 
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -58,7 +60,6 @@ set -U FZF_CD_WITH_HIDDEN_OPTS "--reverse --preview='tree -C {}' "
 set -U FZF_COMPLETE_OPTS "--reverse --inline-info --border"
 set -U FZF_ENABLE_OPEN_PREVIEW 1
 
-
 # FUNCTIONS
 # ----------
 
@@ -86,7 +87,7 @@ starship init fish | source
 
 # enable_transience
 
-xhost +local:root
+xhost +local:docker
 
 $PATH=$HOME/ws_ros2/:$PATH
 
@@ -104,3 +105,6 @@ else
     end
 end
 # <<< conda initialize <<<
+
+# uv
+fish_add_path "/home/yadu/.local/bin"
