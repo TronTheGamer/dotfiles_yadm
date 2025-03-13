@@ -104,7 +104,10 @@ else
         set -x PATH /home/yadu/anaconda3/bin $PATH
     end
 end
-# <<< conda initialize <<<
 
+conda deactivate
+# <<< conda initialize <<<
+# FX json
+fx --comp fish | source
 # uv
 fish_add_path "/home/yadu/.local/bin"
