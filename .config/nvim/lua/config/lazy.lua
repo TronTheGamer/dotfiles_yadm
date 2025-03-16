@@ -111,6 +111,7 @@ require("lazy").setup({
       },
     },
   },
+  { "prabirshrestha/tv.vim" },
 })
 -- AVANTE NVIM ----------------------------
 
