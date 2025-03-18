@@ -2,6 +2,8 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+tv init fish | source
+
 alias cls='clear'
 # alias bat='batcat'
 alias vim='nvim'
@@ -12,7 +14,7 @@ alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
 alias fd='fd'
 alias lg='lazygit'
 alias ncf='nvim ~/.config/fish/config.fish'
-alias fman='bash -c "compgen -c|fzf|xargs man"'
+alias fman='tv man'
 alias zf='z --list | fzf | awk \'{$1=""; sub(/^ /, ""); print}\' | read -l dir && cd $dir'
 alias ls='eza --long --color=always --icons'
 alias ll='eza -a -l --color=always --icons'
@@ -25,6 +27,9 @@ alias wzf='nvim ~/.config/wezterm/wezterm.lua'
 alias v='nvim'
 alias lzd="lazydocker"
 alias pst="posting"
+
+alias tfz='B=$(tv task | awk '"'"'/([0-9])/{ print $1 }'"'"' ); task edit $B'
+alias tfzc='B=$(tv task_complete | awk '"'"'/([1-9])/{ print $2 }'"'"' ); task edit $B'
 
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -46,7 +51,6 @@ if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
     git_fzf_key_bindings
 end
 
-tv init fish | source
 # source /usr/share/fzf/key-bindings.fish
 # set -U FZF_LEGACY_KEYBINDINGS 1
 set -U FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
