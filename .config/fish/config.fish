@@ -11,6 +11,7 @@ alias EDITOR='nvim'
 
 alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
 
+alias bman="man -P cat $1 | bat -l man -n --color=always --theme=Dracula --italic-text=always"
 alias fd='fd'
 alias lg='lazygit'
 alias ncf='nvim ~/.config/fish/config.fish'

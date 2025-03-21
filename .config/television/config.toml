@@ -48,7 +48,7 @@ show_help_bar = false
 # This option can be toggled with the (default) `ctrl-o` keybinding
 show_preview_panel = true
 # Where to place the input bar in the UI (top or bottom)
-theme = "catppuccin"
+theme = "gruvbox-dark"
 
 # Previewers settings
 # ----------------------------------------------------------------------------

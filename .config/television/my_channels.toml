@@ -49,5 +49,5 @@ preview_command = "task $(echo {} | awk '/([0-9a-f])/{ print $2 }')"
 
 [[cable_channel]]
 name = "man"
-source_command = "bash -c 'compgen -c'"
-preview_command = "bash -c'man {0}'"
+source_command = "compgen -c"
+preview_command = "man -P cat {0} | bat -l man -n --color=always --theme=Dracula"
