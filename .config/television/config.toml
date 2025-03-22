@@ -65,6 +65,7 @@ theme = "catppuccin"
 # Channel mode
 # ------------------------
 [keybindings.Channel]
+# [keybindings.ToggleSendToChannel]
 # Quit the application
 quit = ["esc", "ctrl-c"]
 # Scrolling through entries

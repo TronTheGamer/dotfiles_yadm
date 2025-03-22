@@ -67,4 +67,5 @@ keybind = super+b>l=goto_split:right
 
 
 # COMMAND
-command = ~/scripts/ghostty_tmux.sh
+# command = ~/scripts/ghostty_tmux.sh
+command = tmux a || tmux
