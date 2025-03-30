@@ -10,12 +10,14 @@ if pidof rofi > /dev/null; then
   pkill rofi
 fi
 
-sed '1,/^# # DATA # #$/d' "$0" | \
-rofi -i -dmenu -mesg "$msg" -config $rofi_theme | \
-awk '{print $1}' | \
-head -n 1 | \
-tr -d '\n' | \
-wl-copy
+# sed '1,/^# # DATA # #$/d' "$0" | \
+# rofi -i -dmenu -mesg "$msg" -config $rofi_theme | \
+# awk '{print $1}' | \
+# head -n 1 | \
+# tr -d '\n' | \
+# wl-copy
+
+rofi -modi emoji -show emoji -kb-secondary-copy "" -kb-custom-1 Ctrl+c | xclip
 
 exit
 
