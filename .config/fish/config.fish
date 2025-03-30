@@ -2,6 +2,8 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+tv init fish | source
+
 alias cls='clear'
 # alias bat='batcat'
 alias vim='nvim'
@@ -9,10 +11,11 @@ alias EDITOR='nvim'
 
 alias appimage-builder='appimage-builder-1.1.1.dev32+g2709a3b-x86_64.AppImage'
 
+alias bman="man -P cat $1 | bat -l man -n --color=always --theme=Dracula --italic-text=always"
 alias fd='fd'
 alias lg='lazygit'
-alias ncf='nvim ~/.config/fish/'
-alias fman='bash -c "compgen -c|fzf|xargs man"'
+alias ncf='nvim ~/.config/fish/config.fish'
+alias fman='tv man'
 alias zf='z --list | fzf | awk \'{$1=""; sub(/^ /, ""); print}\' | read -l dir && cd $dir'
 alias ls='eza --long --color=always --icons'
 alias ll='eza -a -l --color=always --icons'
@@ -20,6 +23,23 @@ alias nz='bash -c "~/.config/scripts/z_openfiles_nvim.sh"'
 alias sf='source ~/.config/fish/config.fish'
 alias pss='ps -e | fzf'
 alias psk="ps -e | fzf | awk '{print $1}' | xargs -I {} kill -9 {}"
+alias comfyui='python3 $HOME/ComfyUI/main.py'
+alias wzf='nvim ~/.config/wezterm/wezterm.lua'
+alias v='nvim'
+alias lzd="lazydocker"
+alias pst="posting"
+
+alias tfz='B=$(tv task | awk '"'"'/([0-9])/{ print $1 }'"'"' ); task edit $B'
+alias tfzc='B=$(tv task_complete | awk '"'"'/([1-9])/{ print $2 }'"'"' ); task edit $B'
+
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
 
 bass export EDITOR='/usr/bin/nvim'
 
@@ -32,7 +52,7 @@ if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
     git_fzf_key_bindings
 end
 
-source /usr/share/fzf/key-bindings.fish
+# source /usr/share/fzf/key-bindings.fish
 # set -U FZF_LEGACY_KEYBINDINGS 1
 set -U FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 # fzf_configure_bindings --directory=\ct --processes=\ck   #REQUIRES fzf.fish
@@ -45,7 +65,6 @@ set -U FZF_FIND_FILE_OPTS "--reverse --inline-info --preview='bat {}' --bind shi
 set -U FZF_CD_WITH_HIDDEN_OPTS "--reverse --preview='tree -C {}' "
 set -U FZF_COMPLETE_OPTS "--reverse --inline-info --border"
 set -U FZF_ENABLE_OPEN_PREVIEW 1
-
 
 # FUNCTIONS
 # ----------
@@ -68,14 +87,33 @@ function starship_transient_rprompt_func
     starship module time
 end
 
-# starship init fish | source
+starship init fish | source
 # export GZ_SIM_SYSTEM_PLUGIN_PATH=$HOME/ardupilot_gazebo/build:$GZ_SIM_SYSTEM_PLUGIN_PATH
 # export GZ_SIM_RESOURCE_PATH=$HOME/ardupilot_gazebo/models:$HOME/ardupilot_gazebo/worlds:$GZ_SIM_RESOURCE_PATH
 
 # enable_transience
 
-xhost +local:root
+xhost +local:docker
 
-# $PATH=/home/es-yadu/flutter/SDK/flutter/bin:$PATH
+$PATH=$HOME/ws_ros2/:$PATH
 
 cls
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/yadu/anaconda3/bin/conda
+    eval /home/yadu/anaconda3/bin/conda "shell.fish" hook $argv | source
+else
+    if test -f "/home/yadu/anaconda3/etc/fish/conf.d/conda.fish"
+        . "/home/yadu/anaconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH /home/yadu/anaconda3/bin $PATH
+    end
+end
+
+conda deactivate
+# <<< conda initialize <<<
+# FX json
+fx --comp fish | source
+# uv
+fish_add_path "/home/yadu/.local/bin"

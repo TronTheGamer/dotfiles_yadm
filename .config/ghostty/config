@@ -3,17 +3,17 @@
 theme = Arthur
 background = #000000
 background-opacity = 0.75
-background-blur-radius = 20
+# background-blur-radius = 50
 
-font-family =  JetBrainsMono NF SemiBold
-font-size = 15
+font-family =  SpaceMono Nerd Font
+font-size = 10
 cursor-style = block
 cursor-style-blink = false
 cursor-invert-fg-bg = true
 
 macos-titlebar-style = hidden
 macos-option-as-alt = true
-window-decoration = false
+window-decoration = true
 mouse-hide-while-typing = true
 
 confirm-close-surface = false
@@ -31,12 +31,12 @@ copy-on-select = clipboard
 
 # Custom Keybinds & Config (super represents cmd key on mac)
 # For Simple Keybinds
-# keybind = super+shift+r=reload_config 
+keybind = super+shift+x=reload_config 
 keybind = super+i=inspector:toggle
 
 # Similar Tmux but with Ghostty
 # (ctrl b for tmux -> cmb b for ghostty)
-keybind = super+b>r=reload_config
+keybind = ctrl+shift+s=reload_config
 keybind = super+b>x=close_surface
 # this only works if you have `macos-titlebar-style = tabs or native or transparent`
 # else it behaves like new window
@@ -64,3 +64,8 @@ keybind = super+b>h=goto_split:left
 keybind = super+b>j=goto_split:bottom
 keybind = super+b>k=goto_split:top
 keybind = super+b>l=goto_split:right
+
+
+# COMMAND
+# command = ~/scripts/ghostty_tmux.sh
+command = tmux a || tmux

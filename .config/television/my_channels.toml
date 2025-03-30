@@ -1,0 +1,53 @@
+[[cable_channel]]
+name = "git-log"
+source_command = 'git log --oneline --date=short --pretty="format:%h %s %an %cd" "$@"'
+preview_command = 'git show -p --stat --pretty=fuller --color=always {0}'
+
+[[cable_channel]]
+name = "dotfiles"
+source_command = 'fd -t f . $HOME/.config'
+preview_command = ':files:'
+
+
+[[cable_channel]]
+name = "tmux list-sessions"
+source_command = 'tmux list-sessions'
+preview_command = 'tmux list-windows -t {0}'
+
+
+[[cable_channel]]
+name = "docker-images"
+source_command = 'docker image list --format "{{.ID}} {{.Repository}}\t{{.Tag}}\t{{.Size}}"'
+preview_command = 'docker image inspect {0} | jq -C'
+
+
+[[cable_channel]]
+name = "nixpkgs"
+source_command = "nix-search-tv print"
+preview_command = "nix-search-tv preview {}"
+
+[[cable_channel]]
+name = "fish-history"
+source_command = "fish -c 'history'"
+
+[[cable_channel]]
+name = "guix-packages"
+source_command = "guix package --list-available=.*"
+preview_command = "guix package --show={0}"
+
+
+[[cable_channel]]
+name = "task"
+source_command = "task rc.defaultwidth:500 rc.defaultheight:1000"
+preview_command = "task $(echo {} | awk '/([0-9])/{ print $1 }')"
+
+[[cable_channel]]
+name = "task_complete"
+source_command = "task rc.defaultwidth:500 rc.defaultheight:1000 complete"
+preview_command = "task $(echo {} | awk '/([0-9a-f])/{ print $2 }')"
+
+
+[[cable_channel]]
+name = "man"
+source_command = "compgen -c"
+preview_command = "man -P cat {0} | bat -l man -n --color=always --theme=Dracula"

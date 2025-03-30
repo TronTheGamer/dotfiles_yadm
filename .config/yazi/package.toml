@@ -1,0 +1,27 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "marcosvnmelo/kanagawa-dragon"
+rev = "2ddff30"
+hash = "c9e9fcf6b11c9fe63d4ac7c9408f628c"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-frappe"
+rev = "fd85060"
+hash = "e88895e8f8b7926f20946f273ecc7348"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "93b02c3"
+hash = "e482f09bbc9c7adb38bb8bba95486ee6"
+
+[[flavor.deps]]
+use = "sanjinso/monokai-vibrant"
+rev = "8b68223"
+hash = "f4458ebaf8961d714eba05fe5ba40166"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-dark"
+rev = "65ba744"
+hash = "13cc1e635e5571d749f606bdbde23a0d"

@@ -1,30 +1,15 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
--- Default options:
-require("kanagawa").setup({
-  compile = false, -- enable compiling the colorscheme
-  undercurl = true, -- enable undercurls
-  commentStyle = { italic = true },
-  functionStyle = {},
-  keywordStyle = { italic = true },
-  statementStyle = { bold = true },
-  typeStyle = {},
-  transparent = false, -- do not set background color
-  dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-  terminalColors = true, -- define vim.g.terminal_color_{0,17}
-  colors = { -- add/modify theme and palette colors
-    palette = {},
-    theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-  },
-  overrides = function(colors) -- add/modify highlights
-    return {}
-  end,
-  theme = "wave", -- Load "wave" theme when 'background' option is not set
-  background = { -- map the value of 'background' option to a theme
-    dark = "wave", -- try "dragon" !
-    light = "lotus",
-  },
-})
 
--- setup must be called before loading
--- vim.cmd("colorscheme kanagawa")
+vim.g.lazyvim_check_order = false
+
+require("config.lazy")
+require("config.keymaps")
+require("config.autocmds")
+require("config.options")
+
+-- Vim plug:----------------
+local vim = vim
+local Plug = vim.fn["plug#"]
+vim.call("plug#begin")
+Plug("prabirshrestha/tv.vim", { ["dir"] = "~/.config/nvim/plugged/tv.vim" })
+vim.call("plug#end")

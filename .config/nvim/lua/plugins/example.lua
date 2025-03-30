@@ -11,7 +11,82 @@
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
-  {"scottmckendry/cyberdream.nvim"},
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = true,
+    priority = 1000,
+    
+  },
+  -- lua/plugins/rose-pine.lua
+  { 
+  	"rose-pine/neovim", 
+  	name = "rose-pine",
+    opts = {
+      transparent = true,
+    },
+  	config = function()
+      require("rose-pine").setup({
+        variant = "moon", -- auto, main, moon, or dawn
+        dark_variant = "moon", -- main, moon, or dawn
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+
+        enable = {
+          terminal = true,
+          legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+          migrations = true, -- Handle deprecated options automatically
+        },
+
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = true,
+        },
+
+        groups = {
+          border = "muted",
+          link = "iris",
+          panel = "surface",
+
+          error = "love",
+          hint = "iris",
+          info = "foam",
+          note = "pine",
+          todo = "rose",
+          warn = "gold",
+
+          git_add = "foam",
+          git_change = "rose",
+          git_delete = "love",
+          git_dirty = "rose",
+          git_ignore = "muted",
+          git_merge = "iris",
+          git_rename = "pine",
+          git_stage = "iris",
+          git_text = "rose",
+          git_untracked = "subtle",
+
+          h1 = "iris",
+          h2 = "foam",
+          h3 = "rose",
+          h4 = "gold",
+          h5 = "pine",
+          h6 = "foam",
+        },
+
+        highlight_groups = {
+          -- Comment = { fg = "foam" },
+          -- VertSplit = { fg = "muted", bg = "muted" },
+          NormalFloat = { bg = "none" },
+        },
+      })
+
+      -- vim.cmd("colorscheme rose-pine")
+      vim.cmd("colorscheme rose-pine-main")
+      -- vim.cmd("colorscheme rose-pine-moon")
+      -- vim.cmd("colorscheme rose-pine-dawn")
+    end,
+  },
 
   -- add tokyonight
   {
@@ -24,6 +99,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     lazy = true,
+    priority = 100,
     opts = {
       compile = false,
     },
@@ -32,58 +108,33 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      colorscheme = "rose-pine",
     },
   },
 
 
+  {"pocco81/auto-save.nvim"},
+
 --I've also tried changing `colorscheme = "tokyonight-night"` but that also does not work. The file is being loaded and read because I had a syntax error and that showed up. I feel like I am following the directions of both tokyonight and lazyvim, but can't get this to work. I have to type `:colorscheme tokyonight-night` when loading lazyvim to get it to workk. 
 
-{
-  "snacks.nvim",
-  opts = {
-    indent = { enabled = true },
-    input = { enabled = true },
-    notifier = { enabled = true },
-    scope = { enabled = true },
-    scroll = { enabled = true },
-    statuscolumn = { enabled = false }, -- we set this in options.lua
-    toggle = { map = LazyVim.safe_keymap_set },
-    words = { enabled = true },
-  },
-  -- stylua: ignore
-  keys = {
-    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History" },
-    { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-  },
-},
-  
-  {"pocco81/auto-save.nvim"},
-  {"MeanderingProgrammer/render-markdown.nvim"},
-  {"rmagatti/auto-session"},
-  {"folke/persistence.nvim"},
-  -- change trouble config
+  {"hrsh7th/cmp-nvim-lsp"},
+
+  -- NEOGIT plugin
   {
-    "folke/trouble.nvim",
-    -- opts will be merged with the parent spec
-    opts = { use_diagnostic_signs = true },
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
+      "ibhagwan/fzf-lua",              -- optional
+      "echasnovski/mini.pick",         -- optional
+    },
+    config = true
   },
-
-  -- disable trouble
-  { "folke/trouble.nvim", enabled = false },
-
-  -- override nvim-cmp and add cmp-emoji
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = { "hrsh7th/cmp-emoji" },
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     table.insert(opts.sources, { name = "emoji" })
-  --   end,
-  -- },
-
 {
   "hrsh7th/nvim-cmp",
+  lazy = false,
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
     local has_words_before = function()
@@ -123,6 +174,52 @@ return {
     })
   end,
 },
+
+{
+  "snacks.nvim",
+  opts = {
+    indent = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = { enabled = false }, -- we set this in options.lua
+    toggle = { map = LazyVim.safe_keymap_set },
+    words = { enabled = true },
+  },
+  -- stylua: ignore
+  keys = {
+    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History" },
+    { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+  },
+},
+
+
+  
+  {"pocco81/auto-save.nvim"},
+  {"MeanderingProgrammer/render-markdown.nvim"},
+  {"rmagatti/auto-session"},
+  {"folke/persistence.nvim"},
+  -- change trouble config
+  {
+    "folke/trouble.nvim",
+    -- opts will be merged with the parent spec
+    enabled = true,
+    opts = { use_diagnostic_signs = true },
+  },
+
+  -- disable trouble
+
+  -- override nvim-cmp and add cmp-emoji
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = { "hrsh7th/cmp-emoji" },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, { name = "emoji" })
+  --   end,
+  -- },
+
 
   -- change some telescope options and a keymap to browse plugin files
   {
@@ -257,7 +354,7 @@ return {
   },
 
   -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
+  -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
@@ -282,16 +379,49 @@ return {
       panel = { enabled = true },
     },
   },
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({})
+  --   end,
+  -- },
+---@type LazySpec
+{
+  "mikavilpas/yazi.nvim",
+  event = "VeryLazy",
+  keys = {
+    -- 👇 in this section, choose your own keymappings!
+    {
+      "<leader>-",
+      mode = { "n", "v" },
+      "<cmd>Yazi<cr>",
+      desc = "Open yazi at the current file",
     },
-    config = function()
-      require("codeium").setup({})
-    end,
+    {
+      -- Open in the current working directory
+      "<leader>cw",
+      "<cmd>Yazi cwd<cr>",
+      desc = "Open the file manager in nvim's working directory",
+    },
+    {
+      "<c-up>",
+      "<cmd>Yazi toggle<cr>",
+      desc = "Resume the last yazi session",
+    },
   },
+  ---@type YaziConfig | {}
+  opts = {
+    -- if you want to open yazi instead of netrw, see below for more info
+    open_for_directories = false,
+    keymaps = {
+      show_help = "<f1>",
+    },
+  },
+},
 {
   "nvim-treesitter/nvim-treesitter",
   version = false, -- last release is way too old and doesn't work on Windows
@@ -374,5 +504,9 @@ return {
 
 { "nvim-lua/plenary.nvim", lazy = true },
 
-
+-- ToggleTerm
+  {'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true},
+  
 }
