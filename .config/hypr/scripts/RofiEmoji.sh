@@ -10,14 +10,12 @@ if pidof rofi > /dev/null; then
   pkill rofi
 fi
 
-# sed '1,/^# # DATA # #$/d' "$0" | \
-# rofi -i -dmenu -mesg "$msg" -config $rofi_theme | \
-# awk '{print $1}' | \
-# head -n 1 | \
-# tr -d '\n' | \
-# wl-copy
-
-rofi -modi emoji -show emoji -kb-secondary-copy "" -kb-custom-1 Ctrl+c | xclip
+sed '1,/^# # DATA # #$/d' "$0" | \
+rofi -i -dmenu -mesg "$msg" -config $rofi_theme | \
+awk '{print $1}' | \
+head -n 1 | \
+tr -d '\n' | \
+wl-copy
 
 exit
 
@@ -1194,8 +1192,8 @@ exit
 🖍️ crayon drawing creativity
 📝 memo write documents stationery pencil paper writing legal exam quiz test study compose
 💼 briefcase business documents work law legal job career
-📁 file folder documents business office
-📂 open file folder documents load
+📁 file directory documents business office
+📂 open file directory documents load
 🗂️ card index dividers organizing business stationery
 📅 calendar calendar schedule
 📆 tear off calendar schedule date planning

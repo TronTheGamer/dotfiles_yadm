@@ -27,8 +27,8 @@ alias ll = eza -l --all --icons=always --color=always
 alias la = ls -la
 alias ss = scoop-search
 alias vim = nvim
-alias sudo = gsudo
-alias su = gsudo run
+# alias sudo = gsudo
+# alias su = gsudo run
 alias scig = gsudo scoop install --global
 alias scup = gsudo scoop update --all --global
 alias scun = gsudo scoop uninstall 
@@ -36,7 +36,7 @@ alias cls = clear
 alias v = nvim
 alias lg =  lazygit
 alias lzd = lazydocker
-
+alias y = yazi
 
 
 # #####################################
