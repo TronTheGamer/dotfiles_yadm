@@ -51,3 +51,15 @@ preview_command = "task $(echo {} | awk '/([0-9a-f])/{ print $2 }')"
 name = "man"
 source_command = "compgen -c"
 preview_command = "man -P cat {0} | bat -l man -n --color=always --theme=Dracula"
+
+[[cable_channel]]
+name = "nushell-history"
+source_command = "nu -c 'history'"
+
+[[cable_channel]]
+name = "fish-history"
+source_command = "fish -c 'history'"
+
+[[cable_channel]]
+name = "bash-history"
+source_command = "tail -r $HOME/.bash_history"
