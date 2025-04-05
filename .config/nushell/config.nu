@@ -22,7 +22,7 @@ source ~/.config/nushell/zoxide.nu
 # ####################################
 # ENV VARIABLE EDITS
 # ####################################
-$env.PATH = $env.PATH | append "${env.HOME}/.local/bin"
+$env.PATH = $env.PATH | append "/home/yadu/.local/bin"
 $env.EDITOR = "/home/yadu/.local/bin/zed"
 
 # #####################################
@@ -43,7 +43,6 @@ alias v = nvim
 alias lg =  lazygit
 alias lzd = lazydocker
 alias y = yazi
-
 
 # #####################################
 # Functions
