@@ -19,6 +19,12 @@
 
 source ~/.config/nushell/zoxide.nu
 
+# ####################################
+# ENV VARIABLE EDITS
+# ####################################
+$env.PATH = $env.PATH | append "${env.HOME}/.local/bin"
+$env.EDITOR = "/home/yadu/.local/bin/zed"
+
 # #####################################
 # alias
 # #####################################
