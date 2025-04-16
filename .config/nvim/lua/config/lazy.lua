@@ -112,6 +112,11 @@ require("lazy").setup({
     },
   },
   { "prabirshrestha/tv.vim" },
+  {
+    "adriankarlen/buffed.nvim",
+    dependencies = { "echasnovski/mini.icons" }, -- optional: required for file icons
+    opts = {},
+  },
 })
 -- AVANTE NVIM ----------------------------
 

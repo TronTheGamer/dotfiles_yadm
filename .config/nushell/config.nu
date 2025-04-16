@@ -29,7 +29,7 @@ $env.EDITOR = "/home/yadu/.local/bin/zed"
 # alias
 # #####################################
 
-alias ll = eza -l --all --icons=always --color=always
+alias ll = ls -l
 alias la = ls -la
 alias ss = scoop-search
 alias vim = nvim
@@ -43,6 +43,12 @@ alias v = nvim
 alias lg =  lazygit
 alias lzd = lazydocker
 alias y = yazi
+
+
+# ---- Arch
+alias pacs = paru -Ss
+alias paci = paru -S
+alias pacup = paru -Syu
 
 # #####################################
 # Functions
