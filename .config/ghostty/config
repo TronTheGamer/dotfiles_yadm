@@ -1,6 +1,6 @@
 # By default Reload config with shft + cmd + , 
 
-theme = Arthur
+theme = catppuccin-macchiato.conf
 background = #000000
 background-opacity = 0.95
 # background-blur-radius = 50
@@ -71,5 +71,5 @@ keybind = super+b>l=goto_split:right
 
 
 # COMMAND
-# command = ~/scripts/ghostty_tmux.sh
+command = ~/scripts/ghostty_tmux.sh
 # command = tmux a || tmux

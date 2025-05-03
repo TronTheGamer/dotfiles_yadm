@@ -117,3 +117,4 @@ conda deactivate
 fx --comp fish | source
 # uv
 fish_add_path "/home/yadu/.local/bin"
+export PATH=/home/yadu/xtensa-esp32-elf-gcc/bin:/home/yadu/.local/bin:/nix/var/nix/profiles/default/bin:/home/yadu/anaconda3/condabin:/home/yadu/.cargo/bin:/home/yadu/.nix-profile/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/yadu/scripts
