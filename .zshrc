@@ -576,6 +576,6 @@ alias zc="nvim ~/.zshrc"
 alias v=nvim
 alias y=yazi
 alias sz="source ~/.zshrc"
-alias zf="z | fzf | xargs -I {} z {}"
+alias zf='cd "$(zoxide query -i)"'
 alias ll="eza -l --icons=always"
 alias la="eza -l -a --icons=always"
