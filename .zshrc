@@ -343,9 +343,10 @@ alias listaur="sudo pacman -Qqem"
 # pacman -S --needed - < my-list-of-packages.txt
 
 #clear
-alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
-alias cls="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
-
+# alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
+# alias cls="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
+alias clean="clear"
+alias cls="clear"
 
 #search content with ripgrep
 alias rg="rg --sort path"
@@ -551,7 +552,7 @@ alias personal='cp -Rf /personal/* ~'
 #hyfetch
 source ~/scripts/zsh_z.sh
 # omz theme use jonathan
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 # >>> conda initialize >>>
@@ -576,3 +577,5 @@ alias v=nvim
 alias y=yazi
 alias sz="source ~/.zshrc"
 alias zf="z | fzf | xargs -I {} z {}"
+alias ll="eza -l --icons=always"
+alias la="eza -l -a --icons=always"

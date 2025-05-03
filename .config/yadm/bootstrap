@@ -39,32 +39,75 @@ install_neovim() {
 }
 
 # Function to check and install Fish if not installed, then set as the default shell
-set_fish_shell() {
-  # Check if Fish shell is already installed
-  if ! command -v fish &>/dev/null; then
-    echo "Fish shell is not installed. Installing Fish..."
-    if [ "$(detect_os)" = "arch" ]; then
-      # Install Fish on Arch Linux using paru
-      paru -Sy --noconfirm fish
-    elif [ "$(detect_os)" = "ubuntu" ]; then
-      # Install Fish on Ubuntu
-      sudo apt update && sudo apt install -y fish
-    else
-      echo "Unsupported OS. Please install Fish manually."
-      return
-    fi
+set_shell() {
+  echo "Which shell would you like to make default? [zsh|fish|nushell]: "
+  selected_shell="$1"
+
+  if [ -z "$selected_shell" ]; then
+    echo "No shell manually selected, hence going with fish:"
+    selected_shell="fish"
   fi
 
-  # Prompt the user to set Fish as the default shell
-  read -p "Do you want to set Fish as the default shell? (y/n): " choice
-  if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-    echo "Setting Fish as the default shell..."
-    # Change the default shell to Fish
-    chsh -s "$(which fish)"
-    echo "Fish shell has been set as the default."
-  else
-    echo "Fish shell not set as the default."
-  fi
+  # Normalize input
+  selected_shell=$(echo "$selected_shell" | tr '[:upper:]' '[:lower:]')
+
+  # Detect OS Step
+  os=$(detect_os)
+
+  case "$selected_shell" in
+  fish)
+    if ! command -v fish &>/dev/null; then
+      echo "Fish shell is not installed. Installing Fish..."
+      if [ "$os" = "arch" ]; then
+        paru -Sy --noconfirm fish
+      elif [ "$os" = "ubuntu" ]; then
+        sudo apt update && sudo apt install -y fish
+      else
+        echo "Unsupported OS. Please install Fish manually."
+        return 1
+      fi
+    fi
+    chsh -s "$(command -v fish)"
+    ;;
+
+  zsh)
+    if ! command -v zsh &>/dev/null; then
+      echo "Zsh is not installed. Installing Zsh..."
+      if [ "$os" = "arch" ]; then
+        paru -Sy --noconfirm zsh
+      elif [ "$os" = "ubuntu" ]; then
+        sudo apt update && sudo apt install -y zsh
+      else
+        echo "Unsupported OS. Please install Zsh manually."
+        return 1
+      fi
+    fi
+    chsh -s "$(command -v zsh)"
+    ;;
+
+  nushell)
+    if ! command -v nu &>/dev/null; then
+      echo "Nushell is not installed. Installing Nushell..."
+      if [ "$os" = "arch" ]; then
+        paru -Sy --noconfirm nushell
+      elif [ "$os" = "ubuntu" ]; then
+        sudo apt update && sudo apt install -y nushell
+      else
+        echo "Unsupported OS. Please install Nushell manually."
+        return 1
+      fi
+    fi
+    chsh -s "$(command -v nu)"
+    ;;
+
+  *)
+    echo "Unsupported shell: $selected_shell"
+    echo "Supported options are: zsh, fish, nushell"
+    return 1
+    ;;
+  esac
+
+  echo "$selected_shell has been set as your default shell."
 }
 
 # Function to install fzf and input-remapper
@@ -132,7 +175,7 @@ install_starship() {
 
 # Run the installations
 install_paru
-set_fish_shell
+set_shell
 install_starship
 install_wezterm
 install_neovim
