@@ -12,7 +12,7 @@ export ZSH=/usr/share/oh-my-zsh/
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # if you installed the package oh-my-zsh-powerline-theme-git then you type here "powerline" as zsh theme
-ZSH_THEME="random"
+ZSH_THEME="jonathan"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -533,7 +533,7 @@ alias personal='cp -Rf /personal/* ~'
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 
 # reporting tools - install when not installed
-#fastfetch
+# fastfetch
 #neofetch
 #screenfetch
 #alsi
@@ -549,9 +549,11 @@ alias personal='cp -Rf /personal/* ~'
 #cpufetch
 #colorscript random
 #hyfetch
+source ~/scripts/zsh_z.sh
+# omz theme use jonathan
+# eval "$(starship init zsh)"
 
-omz theme use jonathan
-eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/yadu/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -569,5 +571,8 @@ unset __conda_setup
 
 # Aliases
 alias vim=nvim
+alias zc="nvim ~/.zshrc"
 alias v=nvim
 alias y=yazi
+alias sz="source ~/.zshrc"
+alias zf="z | fzf | xargs -I {} z {}"
