@@ -25,7 +25,7 @@ ZSH_THEME="jonathan"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-
+source <(carapace chmod zsh)
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
@@ -579,3 +579,8 @@ alias sz="source ~/.zshrc"
 alias zf='cd "$(zoxide query -i)"'
 alias ll="eza -l --icons=always"
 alias la="eza -l -a --icons=always"
+
+export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
+
+xhost +local:root
+
