@@ -27,6 +27,7 @@ ZSH_THEME="jonathan"
 # CASE_SENSITIVE="true"
 # ~/.zshrc
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+export LS_COLORS=$(vivid generate dracula)
 zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(carapace _carapace)
 #
