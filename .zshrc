@@ -585,6 +585,8 @@ alias zf='cd "$(zoxide query -i)"'
 alias ll="eza -l --icons=always"
 alias la="eza -l -a --icons=always"
 alias tc="nvim ~/.config/tmux/tmux.conf"
+alias lzd="lazydocker"
+alias lg="lazygit"
 
 export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
 
