@@ -29,7 +29,7 @@ ZSH_THEME="jonathan"
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 export LS_COLORS=$(vivid generate dracula)
 zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
-source <(carapace _carapace)
+source <(carapace _carapace zsh)
 #
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -99,6 +99,8 @@ fi
 # else
 #   export EDITOR='mvim'
 # fi
+
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
