@@ -591,5 +591,6 @@ alias lzd="lazydocker"
 alias lg="lazygit"
 
 export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
-
+export EDITOR=nvim
+export VISUAL=nvim
 xhost +local:root
