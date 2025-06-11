@@ -19,16 +19,27 @@
 
 source ~/.config/nushell/zoxide.nu
 
+xhost +local:root
+
+# ####################################
+# ENV VARIABLE EDITS
+# ####################################
+$env.PATH = $env.PATH | append "/home/yadu/.local/bin"
+$env.PATH = $env.PATH | append "/home/yadu/scripts"
+
+# $env.EDITOR = "/home/yadu/.local/bin/zed"
+$env.EDITOR = "nvim"
+
 # #####################################
 # alias
 # #####################################
 
-alias ll = eza -l --all --icons=always --color=always
+alias ll = ls -l
 alias la = ls -la
 alias ss = scoop-search
 alias vim = nvim
-alias sudo = gsudo
-alias su = gsudo run
+# alias sudo = gsudo
+# alias su = gsudo run
 alias scig = gsudo scoop install --global
 alias scup = gsudo scoop update --all --global
 alias scun = gsudo scoop uninstall 
@@ -36,8 +47,13 @@ alias cls = clear
 alias v = nvim
 alias lg =  lazygit
 alias lzd = lazydocker
+alias y = yazi
 
 
+# ---- Arch
+alias pacs = paru -Ss
+alias paci = paru -S
+alias pacup = paru -Syu
 
 # #####################################
 # Functions

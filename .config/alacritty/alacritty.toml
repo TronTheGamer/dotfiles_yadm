@@ -23,23 +23,22 @@ background = "#222222"
 foreground = "#F9F9F9"
 
 [font]
-size = 16.0
-# family = "JetBrains Mono"
+size = 11.0
 
 [font.bold]
-family = "JetBrains Mono"
+family = "hack"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrains Mono"
+family = "monospace"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrains Mono"
+family = "hack"
 style = "Italic"
 
 [font.normal]
-family = "jetBrains Mono"
+family = "hack"
 style = "Regular"
 
 [[keyboard.bindings]]
@@ -50,5 +49,4 @@ key = "F11"
 history = 50000
 
 [window]
-opacity = 0.85
-blur = true
+opacity = 0.8
