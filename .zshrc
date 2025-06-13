@@ -2,6 +2,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+source /opt/ros/humble/setup.bash
+
 # Path to your oh-my-zsh installation.
 #installation via script from github
 #export ZSH="/home/$USER/.oh-my-zsh"
@@ -589,6 +591,21 @@ alias la="eza -l -a --icons=always"
 alias tc="nvim ~/.config/tmux/tmux.conf"
 alias lzd="lazydocker"
 alias lg="lazygit"
+alias humble_dev="distrobox-enter humble_dev"
+
+
+# Functions
+function mkdirx() {
+    mkdir -p "$@" && cd "$_";
+}
+
+function touchx() {
+    if [ -z "$1" ]; then
+        echo "Usage: touchx <filename>"
+        return 1
+    fi
+    touch "$1" && nvim "$1"
+}
 
 export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
 export EDITOR=nvim

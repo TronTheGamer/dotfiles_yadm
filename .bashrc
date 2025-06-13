@@ -1,3 +1,5 @@
+source /opt/ros/humble/setup.bash
+eval "$(starship init bash)"
 ### EXPORT ###
 export EDITOR='nano'
 export VISUAL='nano'
