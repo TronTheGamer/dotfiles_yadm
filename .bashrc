@@ -7,6 +7,11 @@ export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+
+export GZ_VERSION=harmonic
+export GZ_SIM_SYSTEM_PLUGIN_PATH=$HOME/autopilot/ardupilot_gazebo/build:$GZ_SIM_SYSTEM_PLUGIN_PATH
+export GZ_SIM_RESOURCE_PATH=$HOME/autopilot/ardupilot_gazebo/models:$HOME/autopilot/ardupilot_gazebo/worlds:$GZ_SIM_RESOURCE_PATH
+
 #Ibus settings if you need them
 #type ibus-setup in terminal to change settings and start the daemon
 #delete the hashtags of the next lines and restart
@@ -244,8 +249,8 @@ alias listaur="sudo pacman -Qqem"
 # pacman -S --needed - < my-list-of-packages.txt
 
 #clear
-alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
-alias cls="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
+alias clean="clear"
+alias cls="clear"
 
 #search content with ripgrep
 alias rg="rg --sort path"
@@ -451,17 +456,27 @@ alias personal='cp -Rf /personal/* ~'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/yadu/anaconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__conda_setup"
-else
-  if [ -f "/home/yadu/anaconda3/etc/profile.d/conda.sh" ]; then
-    . "/home/yadu/anaconda3/etc/profile.d/conda.sh"
-  else
-    export PATH="/home/yadu/anaconda3/bin:$PATH"
-  fi
-fi
-unset __conda_setup
+#__conda_setup="$('/home/yadu/anaconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+#if [ $? -eq 0 ]; then
+#  eval "$__conda_setup"
+#else
+#  if [ -f "/home/yadu/anaconda3/etc/profile.d/conda.sh" ]; then
+#    . "/home/yadu/anaconda3/etc/profile.d/conda.sh"
+#  else
+#    export PATH="/home/yadu/anaconda3/bin:$PATH"
+#  fi
+#fi
+#unset __conda_setup
 # <<< conda initialize <<<
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
+source /home/yadu/autopilot/ardupilot/Tools/completion/completion.bash
+source ~/.ardupilot_env
+source /home/yadu/autopilot/ardupilot/Tools/completion/completion.bash
+source ~/.ardupilot_env
+export PATH=$PATH:/home/yadu/ardu_ws/Micro-XRCE-DDS-Gen/scripts
+
+. "$HOME/.atuin/bin/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"

@@ -2,7 +2,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-source /opt/ros/humble/setup.bash
+source /opt/ros/humble/setup.zsh
 
 # Path to your oh-my-zsh installation.
 #installation via script from github
@@ -611,3 +611,7 @@ export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 xhost +local:root
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

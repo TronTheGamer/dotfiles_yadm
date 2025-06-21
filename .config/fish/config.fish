@@ -1,5 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    atuin init fish | source
 end
 
 tv init fish | source
@@ -50,6 +51,7 @@ bass export EDITOR='/usr/bin/nvim'
 if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
     source ~/.config/fish/custom/git_fzf.fish
     git_fzf_key_bindings
+    atuin init fish | source
 end
 
 # source /usr/share/fzf/key-bindings.fish
