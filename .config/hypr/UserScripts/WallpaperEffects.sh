@@ -76,6 +76,11 @@ main() {
             # Apply selected effect
             notify-send -u normal -i "$iDIR/ja.png"  "Applying:" "$choice effects"
             eval "${effects[$choice]}"
+            
+            # intial kill process
+            for pid in swaybg mpvpaper; do
+            killall -SIGUSR1 "$pid"
+            done
 
             sleep 1
             swww img -o "$focused_monitor" "$wallpaper_output" $SWWW_PARAMS &
@@ -101,36 +106,33 @@ fi
 main
 
 sleep 1
-# Check if user selected a wallpaper
-if [[ -n "$choice" ]]; then
-  sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
-  if [ -d "$sddm_sequoia" ]; then
-    notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
-      -t 10000 \
-      -A "yes=Yes" \
-      -A "no=No" \
-      -h string:x-canonical-private-synchronous:wallpaper-notify
 
-    # Wait for user input using dbus-monitor
-    dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
-    while read -r line; do
-      if echo "$line" | grep -q "yes"; then
+if [[ -n "$choice" ]]; then
+  sddm_simple="/usr/share/sddm/themes/simple_sddm_2"
+  if [ -d "$sddm_simple" ]; then
+  
+	# Check if yad is running to avoid multiple yad notification
+	if pidof yad > /dev/null; then
+	  killall yad
+	fi
+	
+	if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SIMPLE SDDM v2 Theme" \
+    --text-align=left \
+    --title="SDDM Background" \
+    --timeout=5 \
+    --timeout-indicator=right \
+    --button="yad-yes:0" \
+    --button="yad-no:1" \
+    ; then
 
     # Check if terminal exists
-	if ! command -v "$terminal" &>/dev/null; then
-   	  notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
-   	  exit 1
-	fi
-			
-    $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
-    sudo cp -r $wallpaper_output '$sddm_sequoia/backgrounds/default' && \
-    notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
-    break
-  elif echo "$line" | grep -q "no"; then
-    echo "Wallpaper not set as SDDM background. Exiting."
-    break
-  fi
-  
-  done &
+    if ! command -v "$terminal" &>/dev/null; then
+    notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
+    exit 1
+    fi
+
+	exec $SCRIPTSDIR/sddm_wallpaper.sh --effects
+    
+    fi
   fi
 fi

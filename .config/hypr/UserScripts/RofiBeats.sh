@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# For Rofi Beats to play online Music or Locally save media files
+# For Rofi Beats to play online Music or Locally saved media files
 
 # Variables
 mDIR="$HOME/Music/"
@@ -41,7 +41,7 @@ populate_local_music() {
 
 # Function for displaying notifications
 notification() {
-  notify-send -u normal -i "$iDIR/music.png" " Now Playing:" " $@"
+  notify-send -u normal -i "$iDIR/music.png" "Now Playing:" "$@"
 }
 
 # Main function for playing local music
@@ -58,10 +58,11 @@ play_local_music() {
   # Find the corresponding file path based on user's choice and set that to play the song then continue on the list
   for (( i=0; i<"${#filenames[@]}"; ++i )); do
     if [ "${filenames[$i]}" = "$choice" ]; then
-		
-	    notification "$choice"
 
-      # Play the selected local music file using mpv
+      if music_playing; then
+        stop_music
+      fi
+	    notification "$choice"
       mpv --playlist-start="$i" --loop-playlist --vid=no  "${local_music[@]}"
 
       break
@@ -71,6 +72,9 @@ play_local_music() {
 
 # Main function for shuffling local music
 shuffle_local_music() {
+  if music_playing; then
+    stop_music
+  fi
   notification "Shuffle Play local music"
 
   # Play music in $mDIR on shuffle
@@ -89,37 +93,61 @@ play_online_music() {
 
   link="${online_music[$choice]}"
 
+  if music_playing; then
+    stop_music
+  fi
   notification "$choice"
   
   # Play the selected online music using mpv
   mpv --shuffle --vid=no "$link"
 }
 
-
-# Check if an online music process is running and send a notification, otherwise run the main function
-pkill mpv && notify-send -u low -i "$iDIR/music.png" "Music stopped" || {
-
-# Check if rofi is already running
-if pidof rofi > /dev/null; then
-  pkill rofi
-fi
-
-
-# Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config $rofi_theme_1)
-
-  case "$user_choice" in
-    "Play from Music Folder")
-      play_local_music
-      ;;
-    "Play from Online Stations")
-      play_online_music
-      ;;
-    "Shuffle Play from Music Folder")
-      shuffle_local_music
-      ;;
-    *)
-      echo "Invalid choice"
-      ;;
-  esac
+# Function to check if music is already playing
+music_playing() {
+  pgrep -x "mpv" > /dev/null
 }
+
+# Function to stop music and kill mpv processes
+stop_music() {
+  mpv_pids=$(pgrep -x mpv)
+
+  if [ -n "$mpv_pids" ]; then
+    # Get the PID of the mpv process used by mpvpaper (using the unique argument added)
+    mpvpaper_pid=$(ps aux | grep -- 'unique-wallpaper-process' | grep -v 'grep' | awk '{print $2}')
+
+    for pid in $mpv_pids; do
+      if ! echo "$mpvpaper_pid" | grep -q "$pid"; then
+        kill -9 $pid || true 
+      fi
+    done
+    notify-send -u low -i "$iDIR/music.png" "Music stopped" || true
+  fi
+}
+
+user_choice=$(printf "%s\n" \
+  "Play from Online Stations" \
+  "Play from Music directory" \
+  "Shuffle Play from Music directory" \
+  "Stop RofiBeats" \
+  | rofi -dmenu -config $rofi_theme_1)
+
+echo "User choice: $user_choice"
+
+case "$user_choice" in
+  "Play from Online Stations")
+    play_online_music
+    ;;
+  "Play from Music directory")
+    play_local_music
+    ;;
+  "Shuffle Play from Music directory")
+    shuffle_local_music
+    ;;
+  "Stop RofiBeats")
+    if music_playing; then
+      stop_music
+    fi
+    ;;
+  *)
+    ;;
+esac

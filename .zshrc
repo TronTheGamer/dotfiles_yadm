@@ -2,7 +2,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-source /opt/ros/humble/setup.zsh
+# Sourcing ROS if installed
+if [ -f /opt/ros/humble/setup.zsh ]; then
+  # Source ROS 2 Humble setup script
+  source /opt/ros/humble/setup.zsh
+fi
 
 # Path to your oh-my-zsh installation.
 #installation via script from github
@@ -580,19 +584,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # Aliases
-alias vim=nvim
-alias zc="nvim ~/.zshrc"
-alias v=nvim
-alias y=yazi
-alias sz="source ~/.zshrc"
-alias zf='cd "$(zoxide query -i)"'
-alias ll="eza -l --icons=always"
-alias la="eza -l -a --icons=always"
-alias tc="nvim ~/.config/tmux/tmux.conf"
-alias lzd="lazydocker"
-alias lg="lazygit"
-alias humble_dev="distrobox-enter humble_dev"
-
+source $HOME/.aliases
 
 # Functions
 function mkdirx() {
