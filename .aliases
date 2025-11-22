@@ -1,5 +1,6 @@
 
 # ALIASES
+alias ah="atuin search -i"
 alias vim=nvim
 alias zc="nvim ~/.zshrc"
 alias v=nvim
@@ -29,3 +30,7 @@ alias sprs='sudo pacman -Rs'
 alias sprdd='sudo pacman -Rdd'
 alias spqo='sudo pacman -Qo'
 alias spsii='sudo pacman -Sii'
+
+
+# Source Files common to all shells 
+ source $HOME/esp/esp-idf/export.sh

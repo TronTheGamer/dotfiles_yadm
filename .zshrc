@@ -28,6 +28,9 @@ ZSH_THEME="jonathan"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # ZSH_THEME_RANDOM_IGNORED=(pygmalion tjkirch_mod)
+#
+
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -607,3 +610,5 @@ xhost +local:root
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
