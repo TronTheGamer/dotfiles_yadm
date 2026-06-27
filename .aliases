@@ -33,4 +33,4 @@ alias spsii='sudo pacman -Sii'
 
 
 # Source Files common to all shells 
- source $HOME/esp/esp-idf/export.sh
+alias sesp='source $HOME/esp/esp-idf/export.sh'
